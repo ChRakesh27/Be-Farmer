@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="filter">
+      <h1>Filter:</h1>
+      <form [formGroup]="cartform">
+        <table>
+          <tr>
+            <th>AREA</th>
+            <th>SOIL</th>
+            <th>AMOUNT</th>
+            <th>DISTRICT</th>
+            <th>MONDAL</th>
+          </tr>
+          <tr>
+            <td>
+              <select class="form-select" aria-label="Default select example" formControlName="area" required>
+                <option value="" disabled selected>ALL</option>
+                <option value="Red Soil">Red Soil</option>
+                <option value="Black Soil">Black Soil</option>
+                <option value="Silt Soil">Silt Soil</option>
+              </select>
+            </td>
+            <td>
+
+              <select class="form-select" aria-label="Default select example" formControlName="soil" required>
+                <option value="" disabled selected>ALL</option>
+                <option value="Red Soil">Red Soil</option>
+                <option value="Black Soil">Black Soil</option>
+                <option value="Silt Soil">Silt Soil</option>
+              </select>
+            </td>
+            <td>
+
+              <select class="form-select" aria-label="Default select example" formControlName="amount" required>
+                <option value="" disabled selected>ALL</option>
+                <option *ngFor="let district of district" [ngValue]="district.district_name">{{district.district_name}}</option>
+              </select>
+            </td>
+            <td>
+
+              <select class="form-select" aria-label="Default select example" formControlName="district" (click)="sub()" required>
+                <option value="" disabled selected>ALL</option>
+                <option *ngFor="let district of district" [ngValue]="district.district_name">{{district.district_name}}</option>
+              </select>
+            </td>  
+            <td>
+
+              <select class="form-select" aria-label="Default select example" required formControlName="mondal" required>
+                <option value="" disabled selected>ALL</option>
+                <option  *ngFor="let mondal of mondal" [ngValue]="mondal">{{mondal}}</option>
+              </select>          
+            </td>
+          </tr>
+        </table>
+        </form>
+        
+        </div>
+          <div class="row">
+          <h1>Featured Lands</h1>
+          <div class="col-md-3" *ngFor=" let i of getdata">
+          <div class="box" *ngIf= i.isavailable >
+            <div class="card">
+                <img src="../../assets/images/{{i.img}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{i.username | uppercase}}</h5>
+                  <div class="card-text">
+                    <p>AREA: {{i.area}} Acres</p>
+                    <p>SOIL: {{i.soil}}</p>
+                    <p>DISTRICT: {{i.district}}</p>
+                    <p>MONDAL: {{i.mondal}}</p>
+                    <p>₹: {{i.amount}} / Year</p>       
+                   </div>
+                  <button class="btn btn-primary" routerLink="/view" routerLinkActive="active" (click)="selItem(i)">View</button> 
+                </div> 
+                </div> 
+              </div>
+        </div>
+    </div>
+</div>
