@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 var cors = require('cors');
 const userRoutes = require('./routers/user');
+const landRoutes = require('./routers/land');
 
 
 // connect mysql database..
@@ -25,6 +26,7 @@ async function createServer() {
 
         // express routes
         userRoutes(app, db)
+        landRoutes(app, db)
 
         // express server done
         const port = process.env.PORT || 3000;
