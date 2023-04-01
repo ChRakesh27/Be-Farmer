@@ -177,8 +177,3 @@ function userRoutes(app, db) {
 
 
 module.exports = userRoutes
-
-
-
-
-

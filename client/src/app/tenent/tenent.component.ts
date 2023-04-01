@@ -15,7 +15,7 @@ export class TenentComponent implements OnInit {
   getdata: any = [];
   islogedin: any = false;
   Email: any;
-  id:any;
+  id: any;
   logDel: any = localStorage.getItem('loged');
 
   islogin = JSON.parse(this.logDel);
@@ -26,26 +26,26 @@ export class TenentComponent implements OnInit {
     surveyno: new FormControl(),
 
   })
-  
+
 
   ngOnInit(): void {
 
     if (this.logDel !== null) {
       this.islogedin = true;
       this.Email = this.islogin.email;
-      this.id = this.islogin.id; 
+      this.id = this.islogin.id;
     }
     // getting land data
 
     this.service.getUnRegLand(this.id).subscribe((res) => {
       console.log("🚀 ~ res:", res)
-      this.getdata = res.data.filter((ele:any, ind:any) => ind < 4);
-      })
-      
-      
-    }
+      this.getdata = res.data.filter((ele: any, ind: any) => ind < 4);
+    })
 
- 
+
+  }
+
+
   //------------------ Updating the land when u " apply "----------------------------------
 
   updatedata(data: any) {
@@ -55,10 +55,10 @@ export class TenentComponent implements OnInit {
     this.userform.value.registered = this.Email;
     this.service.updateLand(this.userform.value).subscribe((res) => {
       this.userform.reset();
-     })
-    
+    })
+
   }
-  selItem(data:any){
+  selItem(data: any) {
     this.service.setItem(data);
   }
 }
