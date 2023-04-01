@@ -9,7 +9,7 @@ export class ServicesService {
   BASEURL = "http://localhost:3000/api";
   isloged = false;
   selectItem: any;
-  editmode:any=false;
+  editmode: any = false;
   constructor(private _http: HttpClient) { }
   setItem(data: any) {
     this.selectItem = data;
@@ -24,12 +24,12 @@ export class ServicesService {
     return this.editmode;
   }
   getAllLand(id: any): Observable<any> {
-    const apiurl = this.BASEURL + '/getAllLand/' + id;
+    const apiurl = this.BASEURL + '/land/' + id;
     return this._http.get(apiurl);
   }
 
   getDeleteLand(id: any): Observable<any> {
-    const apiurl = this.BASEURL + '/getDeleteLand/' + id;
+    const apiurl = this.BASEURL + '/land/' + id;
     return this._http.delete(apiurl);
   }
 
@@ -38,29 +38,41 @@ export class ServicesService {
     return this._http.get(apiurl);
   }
 
-  createData(data: any, id: any): Observable<any> {
-    const apiurl = this.BASEURL + '/insertUser/' + id
+  createUser(data: any): Observable<any> {
+    const apiurl = this.BASEURL + '/user'
     return this._http.post(apiurl, data);
   }
+
+  createLand(data: any, file: any): Observable<any> {
+
+    const formData = new FormData()
+
+    formData.append('land-image', file)
+    formData.append('data', JSON.stringify(data))
+
+    const apiurl = this.BASEURL + '/land'
+    return this._http.post(apiurl, formData);
+  }
+
   updateLand(data: any): Observable<any> {
-    const apiurl = this.BASEURL + '/updateLand';
+    const apiurl = this.BASEURL + '/land';
     return this._http.put(apiurl, data);
   }
 
   LoginDel(emailid: any, password: any): Observable<any> {
-    const apiurl = this.BASEURL + '/isloged/' + emailid + '/' + password;
+    const apiurl = this.BASEURL + '/user/' + emailid + '/' + password;
     return this._http.get(apiurl);
   }
 
   LoginUpdate(data: any): Observable<any> {
-    const apiurl = this.BASEURL + '/updateLogin';
+    const apiurl = this.BASEURL + '/user';
     return this._http.put(apiurl, data)
   }
   District(): Observable<any> {
     const apiurl = this.BASEURL + '/getDistrict';
     return this._http.get(apiurl)
   }
-  Mondal(id:any): Observable<any> {
+  Mondal(id: any): Observable<any> {
     const apiurl = this.BASEURL + '/getMondal/' + id;
     return this._http.get(apiurl)
   }

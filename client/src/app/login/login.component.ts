@@ -91,7 +91,7 @@ export class LoginComponent implements OnInit {
 
   register() {
     // if (this.userform.value.email.endsWith("@gmail.com")) {
-    this.service.createData(this.userform.value, 'user').subscribe((res) => {
+    this.service.createUser(this.userform.value).subscribe((res) => {
       this.login(this.userform.value.email, this.userform.value.password);
     });
     // }
@@ -122,7 +122,7 @@ export class LoginComponent implements OnInit {
       this.logoutDisplay = 'block';
     } else {
       this.edit = false;
-      this.registerLeft = '50px'; 
+      this.registerLeft = '50px';
       this.loginDisplay = 'block';
       this.logoutDisplay = 'none';
     }
@@ -139,7 +139,7 @@ export class LoginComponent implements OnInit {
     this.UserName = '';
     this.phoneNo = '';
     this.Email = '';
-    this.edit=true;
+    this.edit = true;
     this.userform.reset();
     this.userLogin.reset();
 

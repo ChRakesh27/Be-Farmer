@@ -3,12 +3,12 @@ const { v4: uuidv4 } = require("uuid");
 const selectAll = `SELECT * FROM user`;
 
 function userRoutes(app, db) {
-    app.post("/api/insertUser/:id", async (req, res) => {
+    app.post("/api/user", async (req, res) => {
         try {
-            if (req.params.id === "user") req.body.id = uuidv4();
+            req.body.id = uuidv4();
             let data = req.body;
 
-            const insRes = `INSERT INTO ${req.params.id} SET ?`;
+            const insRes = `INSERT INTO user SET ?`;
             await db.query(insRes, data);
             const selRes = await db.query(selectAll);
             res.json({
@@ -23,7 +23,7 @@ function userRoutes(app, db) {
         }
     });
 
-    app.put("/api/updateLogin", async (req, res) => {
+    app.put("/api/user", async (req, res) => {
         try {
             data = req.body;
             const updRes = `UPDATE user SET username=?, phone=?, email=?, password=?, profileImg=? WHERE id=?`;
@@ -49,7 +49,7 @@ function userRoutes(app, db) {
         }
     });
 
-    app.get("/api/isloged/:id/:pas", async (req, res) => {
+    app.get("/api/user/:id/:pas", async (req, res) => {
         try {
             const islog = `select * from user Where email='${req.params.id}' and password = '${req.params.pas}'`;
             const logdel = await db.query(islog);

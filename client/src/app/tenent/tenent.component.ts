@@ -38,8 +38,14 @@ export class TenentComponent implements OnInit {
     // getting land data
 
     this.service.getUnRegLand(this.id).subscribe((res) => {
-      console.log("🚀 ~ res:", res)
-      this.getdata = res.data.filter((ele: any, ind: any) => ind < 4);
+      this.getdata = res.data.slice(0, 4)
+      this.getdata.forEach((item: any) => {
+        item.pic = btoa(
+          new Uint8Array(item.img.data)
+            .reduce((data, byte) => data + String.fromCharCode(byte), '')
+        );
+      });
+      console.log("🚀 ~ res:", this.getdata)
     })
 
 
