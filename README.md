@@ -2,7 +2,7 @@
 
 - extract the file
 - open command prompt
-- redirect to file
+- redirect path to file
 - type "npm install"
 <!--
 - [ ] asdf
