@@ -68,7 +68,7 @@
                 </tr>
               </table>
 
-              <!-- <input type='file' (change)="onSelectImg($event)" class="land file"> -->
+              <input type='file' (change)="onSelectImg($event)" class="land file">
               <!-- <img src={{imageBase64}} width="100px" height="100px"> -->
               <ng-container *ngIf="edit; else elsebtn">
                 <button type="submit" class="submit-btn" (click)="register()">register</button>
